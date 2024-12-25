@@ -3,7 +3,13 @@
 # Document:
 # https://man7.org/linux/man-pages/man1/certtool.1.html
 
-alias certtool="docker run --init -w /root/certtool --rm -it -v $PWD/certs:/root/certtool/certs -v $PWD/templates:/root/certtool/templates certtool:latest certtool"
+alias certtool="docker run \
+  -w /root/certtool \
+  --rm -it --init \
+  -v $PWD/certs:/root/certtool/certs \
+  -v $PWD/templates:/root/certtool/templates \
+  certtool:latest certtool"
+
 shopt -s expand_aliases
 
 certtool --generate-privkey --outfile certs/key.pem
